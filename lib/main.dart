@@ -15,6 +15,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Facebook UI',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+          textButtonTheme: TextButtonThemeData(
+            style: ButtonStyle(
+              overlayColor: MaterialStatePropertyAll(Colors.grey.shade200),
+            ),
+          ),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
           scaffoldBackgroundColor: Palette.scaffold),
