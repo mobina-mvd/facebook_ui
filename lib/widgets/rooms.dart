@@ -14,28 +14,41 @@ class Rooms extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      color: Colors.white,
-      child: ListView.builder(
-        itemCount: 1 + onlineUsers.length,
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
-        itemBuilder: (BuildContext context, int index) {
-          if (index == 0) {
-            return _CreateRoomButton(
-              onPressed: () {},
-            );
-          }
-          final User user = onlineUsers[index - 1];
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: ProfileAvatar(
-              imageUrl: user.imageUrl,
-              isActive: true,
-            ),
-          );
-        },
+    final bool isDesktop = Responsive.isDesktop(context);
+
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: isDesktop ? 5 : 0),
+      elevation: isDesktop ? 1 : 0,
+      // shape: isDesktop
+      //     ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
+      //     : null,
+      child: ClipRRect(
+        borderRadius:
+            isDesktop ? BorderRadius.circular(10) : BorderRadius.circular(0),
+        child: Container(
+          height: 60,
+          color: Colors.white,
+          child: ListView.builder(
+            itemCount: 1 + onlineUsers.length,
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
+            itemBuilder: (BuildContext context, int index) {
+              if (index == 0) {
+                return _CreateRoomButton(
+                  onPressed: () {},
+                );
+              }
+              final User user = onlineUsers[index - 1];
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: ProfileAvatar(
+                  imageUrl: user.imageUrl,
+                  isActive: true,
+                ),
+              );
+            },
+          ),
+        ),
       ),
     );
   }
